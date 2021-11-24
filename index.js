@@ -117,7 +117,7 @@ class SignalContract {
         }
       )
       .command(
-        "deployment:keys",
+        "deployment:keys [url] [clientName] [clientId] [securityKey] [clientSecret]",
         "-->  Missing description",
         () => null,
         async (argv) => {
