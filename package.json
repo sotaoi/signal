@@ -1,7 +1,7 @@
 {
   "name": "@sotaoi/signal",
   "private": false,
-  "version": "1.0.0",
+  "version": "1.0.1",
   "dependencies": {
     "yargs": "^16.1.1"
   }
