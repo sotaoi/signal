@@ -37,12 +37,12 @@ setup_mac() {
 
 main() {
 
-  PWD=$(pwd)
+  PWD=\$(pwd)
 
   # TODO: (1) detect if 'signal' file exists
   # TODO: (2) detect if 'signal' file is bash or node
 
-  if [[ ! -f "$PWD/signal" ]]; then
+  if [[ ! -f "\$PWD/signal" ]]; then
     echo 'No 'signal' file to execute, exitting...'
     return 0
   fi
@@ -51,8 +51,7 @@ main() {
 
 }
 
-main \"\$@\"
-  " > /usr/local/bin/signal
+main \"\$@\"" > /usr/local/bin/signal
   # echo -e "$SUPER_PASS\n" | sudo -S chown $USERNAME:admin /usr/local/bin/signal
   # echo -e "$SUPER_PASS\n" | sudo -S chmod 755 /usr/local/bin/signal
 
