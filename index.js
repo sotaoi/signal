@@ -18,7 +18,7 @@ class SignalContract {
       bootstrap = null,
       config = null,
       setup = null,
-      init = null,
+      init = null
     }
   ) {
     if (
@@ -57,10 +57,28 @@ class SignalContract {
       config,
       setup,
       init,
-      yargs: null,
+      yargs: null
     };
 
     this.packageJson = packageJson;
+  }
+
+  async reload(argv) {
+    try {
+      await privatesc[this.uid].integrity(argv);
+
+      console.info(`Signal reloading "${this.packageJson.name || "???"}"...`);
+      await this.install(argv);
+      await this.prepare(argv);
+      await this.load(argv);
+      await this.bootstrap(argv);
+      await this.config(argv);
+      await this.setup(argv);
+      await this.init(argv);
+      console.info(`Signal "${this.packageJson.name || "???"}" reload done!`);
+    } catch (err) {
+      console.error(err);
+    }
   }
 
   console(argSlice = process.argv.slice(2)) {
@@ -234,21 +252,7 @@ class SignalContract {
         () => null,
         async (argv) => {
           try {
-            await privatesc[this.uid].integrity(argv);
-
-            console.info(
-              `Signal reloading "${this.packageJson.name || "???"}"...`
-            );
-            await this.install(argv);
-            await this.prepare(argv);
-            await this.load(argv);
-            await this.bootstrap(argv);
-            await this.config(argv);
-            await this.setup(argv);
-            await this.init(argv);
-            console.info(
-              `Signal "${this.packageJson.name || "???"}" reload done!`
-            );
+            await this.reload(argv);
           } catch (err) {
             console.error(err);
           }
