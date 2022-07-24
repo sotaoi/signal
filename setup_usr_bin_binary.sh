@@ -20,7 +20,7 @@ main() {
 }
 
 setup_mac() {
-  USERNAME=$(id -P $(stat -f%Su /dev/console) | cut -d : -f 8)
+  USERNAME=$(id -un $(stat -f%Su /dev/console) | cut -d : -f 8)
   # SCRIPT_PATH="$( cd -P "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && cd ../ && pwd )"
 
   echo -e "Superuser \033[1mpassword\033[0m?"
